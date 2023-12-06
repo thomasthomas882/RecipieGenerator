@@ -12,6 +12,10 @@
 #include <limits>
 #include<queue>
 #include <stack>
+#include <chrono>
+#include <iomanip>
+
+using namespace std::chrono;
 using namespace std;
 
 struct Recipe{
@@ -81,130 +85,162 @@ public:
 };
 
 void printMenu() {
-  cout << "\033[1;32mSelect an option:\033[0m" << "\n" << endl;
-  cout << "\033[1;33m1. Test Dijkstra algorithm search for recipes with exact ingredients\033[0m\n";
-  cout << "\033[1;33m2. Test Dijkstra algorithm search for recipes with ingredients plus extra ingredients\033[0m\n";
-  cout << "\033[1;33m3. Test BFS search for recipes with exact ingredients\033[0m\n";
-  cout << "\033[1;33m4. Test BFS search for recipes with ingredients plus extra ingredients\033[0m\n";
-  cout << "\033[1;33m5. Test DFS search for recipes with exact ingredients\033[0m\n";
-  cout << "\033[1;33m6. Test DFS search for recipes with ingredients plus extra ingredients\033[0m\n";
-  cout << "\033[1;33m7. Search recipes with exact ingredients\033[0m\n";
-  cout << "\033[1;33m8. Search recipes with input ingredients plus extra ingredients\033[0m\n";
-  cout << "\033[1;33m9.Test the FindSimilarRecipes function\033[0m\n";
-  cout << "\033[1;33m0. Exit the program\033[0m\n";
+    cout << "\033[1;32mSelect an option:\033[0m" << "\n" << endl;
+    cout << "\033[1;33m1. Test Dijkstra algorithm search for recipes with exact ingredients\033[0m\n";
+    cout << "\033[1;33m2. Test Dijkstra algorithm search for recipes with ingredients plus extra ingredients\033[0m\n";
+    cout << "\033[1;33m3. Test BFS search for recipes with exact ingredients\033[0m\n";
+    cout << "\033[1;33m4. Test BFS search for recipes with ingredients plus extra ingredients\033[0m\n";
+    cout << "\033[1;33m5. Test DFS search for recipes with exact ingredients\033[0m\n";
+    cout << "\033[1;33m6. Test DFS search for recipes with ingredients plus extra ingredients\033[0m\n";
+    cout << "\033[1;33m7. Search recipes with exact ingredients\033[0m\n";
+    cout << "\033[1;33m8. Search recipes with input ingredients plus extra ingredients\033[0m\n";
+    cout << "\033[1;33m9.Test the FindSimilarRecipes function\033[0m\n";
+    cout << "\033[1;33m0. Exit the program\033[0m\n";
 }
 
 int main() {
     Graph test;
     string filename = "RAW_recipes1.csv";
     test.readCSV(filename);
-cout << "\033[41m___________________¶¶¶¶¶¶\033[0m" << endl;
-cout << "\033[41m_________________¶¶¶¶¶___¶¶\033[0m" << endl;
-cout << "\033[41m________________¶¶¶¶¶¶¶___¶\033[0m" << endl;
-cout << "\033[41m_______________¶¶¶¶¶¶¶¶¶¶¶¶¶\033[0m" << endl;
-cout << "\033[41m___________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶\033[0m" << endl;
-cout << "\033[41m________¶¶¶¶¶___¶¶¶¶¶¶¶¶¶¶¶____¶¶¶¶¶\033[0m" << endl;
-cout << "\033[41m_____¶¶¶¶_________¶¶¶¶¶¶__________¶¶¶\033[0m" << endl;
-cout << "\033[41m____¶¶¶______¶____________________¶__¶¶¶\033[0m" << endl;
-cout << "\033[41m___¶¶________¶¶__¶¶_____¶¶__¶¶¶________¶¶\033[0m" << endl;
-cout << "\033[41m__¶¶_______________¶¶__¶¶_____¶¶¶_______¶¶\033[0m" << endl;
-cout << "\033[41m_¶¶______________________________________¶\033[0m" << endl;
-cout << "\033[41m¶¶________________________________________¶\033[0m" << endl;
-cout << "\033[41m¶¶________________________________________¶\033[0m" << endl;
-cout << "\033[41m_¶¶¶____________________________________¶¶\033[0m" << endl;
-cout << "\033[41m___¶¶¶¶¶____________________________¶¶¶¶¶\033[0m" << endl;
-cout << "\033[33m____¶_¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶_¶\033[0m" << endl;
-cout << "\033[33m_____¶____¶_____¶____¶¶____¶_____¶¶___¶¶\033[0m" << endl;
-cout << "\033[33m_____¶____¶¶____¶____¶¶____¶_____¶____¶\033[0m" << endl;
-cout << "\033[33m_____¶¶____¶____¶¶___¶¶___¶¶____¶¶___¶¶\033[0m" << endl;
-cout << "\033[33m______¶____¶¶___¶¶___¶¶___¶____¶____¶¶\033[0m" << endl;
-cout << "\033[33m______¶¶____¶___¶¶___¶¶___¶___¶___¶¶\033[0m" << endl;
-cout << "\033[33m_______¶____¶¶___¶___¶¶___¶____¶___¶¶\033[0m" << endl;
-cout << "\033[33m_______¶¶___¶¶___¶___¶¶___¶____¶___¶¶\033[0m" << endl;
-cout << "\033[33m________¶____¶¶__¶¶__¶¶__¶¶___¶¶___¶\033[0m" << endl;
-cout << "\033[33m________¶¶____¶___¶__¶¶__¶___¶¶__¶¶\033[0m" << endl;
-cout << "\033[33m_________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶\033[0m" << "\n" << endl;
+    cout << "\033[41m___________________¶¶¶¶¶¶\033[0m" << endl;
+    cout << "\033[41m_________________¶¶¶¶¶___¶¶\033[0m" << endl;
+    cout << "\033[41m________________¶¶¶¶¶¶¶___¶\033[0m" << endl;
+    cout << "\033[41m_______________¶¶¶¶¶¶¶¶¶¶¶¶¶\033[0m" << endl;
+    cout << "\033[41m___________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶\033[0m" << endl;
+    cout << "\033[41m________¶¶¶¶¶___¶¶¶¶¶¶¶¶¶¶¶____¶¶¶¶¶\033[0m" << endl;
+    cout << "\033[41m_____¶¶¶¶_________¶¶¶¶¶¶__________¶¶¶\033[0m" << endl;
+    cout << "\033[41m____¶¶¶______¶____________________¶__¶¶¶\033[0m" << endl;
+    cout << "\033[41m___¶¶________¶¶__¶¶_____¶¶__¶¶¶________¶¶\033[0m" << endl;
+    cout << "\033[41m__¶¶_______________¶¶__¶¶_____¶¶¶_______¶¶\033[0m" << endl;
+    cout << "\033[41m_¶¶______________________________________¶\033[0m" << endl;
+    cout << "\033[41m¶¶________________________________________¶\033[0m" << endl;
+    cout << "\033[41m¶¶________________________________________¶\033[0m" << endl;
+    cout << "\033[41m_¶¶¶____________________________________¶¶\033[0m" << endl;
+    cout << "\033[41m___¶¶¶¶¶____________________________¶¶¶¶¶\033[0m" << endl;
+    cout << "\033[33m____¶_¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶_¶\033[0m" << endl;
+    cout << "\033[33m_____¶____¶_____¶____¶¶____¶_____¶¶___¶¶\033[0m" << endl;
+    cout << "\033[33m_____¶____¶¶____¶____¶¶____¶_____¶____¶\033[0m" << endl;
+    cout << "\033[33m_____¶¶____¶____¶¶___¶¶___¶¶____¶¶___¶¶\033[0m" << endl;
+    cout << "\033[33m______¶____¶¶___¶¶___¶¶___¶____¶____¶¶\033[0m" << endl;
+    cout << "\033[33m______¶¶____¶___¶¶___¶¶___¶___¶___¶¶\033[0m" << endl;
+    cout << "\033[33m_______¶____¶¶___¶___¶¶___¶____¶___¶¶\033[0m" << endl;
+    cout << "\033[33m_______¶¶___¶¶___¶___¶¶___¶____¶___¶¶\033[0m" << endl;
+    cout << "\033[33m________¶____¶¶__¶¶__¶¶__¶¶___¶¶___¶\033[0m" << endl;
+    cout << "\033[33m________¶¶____¶___¶__¶¶__¶___¶¶__¶¶\033[0m" << endl;
+    cout << "\033[33m_________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶\033[0m" << "\n" << endl;
 
-cout << "\x1b[34m█┼┼┼█ ███ █┼┼ ███ ███ █▄┼▄█ ███ ┼┼ ███ ███ ┼┼ ███ █┼█ ███ ┼┼ ███ ███ ███ ███ ███ ███ ┼┼ ████ ███ █┼┼█ ███ ███ ███ ███ ███ ███." << endl;
-cout << "\x1b[34m█┼█┼█ █▄┼ █┼┼ █┼┼ █┼█ █┼█┼█ █▄┼ ┼┼ ┼█┼ █┼█ ┼┼ ┼█┼ █▄█ █▄┼ ┼┼ █▄┼ █▄┼ █┼┼ ┼█┼ █▄█ █▄┼ ┼┼ █▄▄▄ █▄┼ ██▄█ █▄┼ █▄┼ █▄█ ┼█┼ █┼█ █▄┼▀" << endl;
-cout << "\x1b[34m█▄█▄█ █▄▄ █▄█ ███ █▄█ █┼┼┼█ █▄▄ ┼┼ ┼█┼ █▄█ ┼┼ ┼█┼ █┼█ █▄▄ ┼┼ █┼█ █▄▄ ███ ▄█▄ █┼┼ █▄▄ ┼┼ █▄▄█ █▄▄ █┼██ █▄▄ █┼█ █┼█ ┼█┼ █▄█ █┼█ ▀" << "\n" << endl;
+    cout << "\x1b[34m█┼┼┼█ ███ █┼┼ ███ ███ █▄┼▄█ ███ ┼┼ ███ ███ ┼┼ ███ █┼█ ███ ┼┼ ███ ███ ███ ███ ███ ███ ┼┼ ████ ███ █┼┼█ ███ ███ ███ ███ ███ ███." << endl;
+    cout << "\x1b[34m█┼█┼█ █▄┼ █┼┼ █┼┼ █┼█ █┼█┼█ █▄┼ ┼┼ ┼█┼ █┼█ ┼┼ ┼█┼ █▄█ █▄┼ ┼┼ █▄┼ █▄┼ █┼┼ ┼█┼ █▄█ █▄┼ ┼┼ █▄▄▄ █▄┼ ██▄█ █▄┼ █▄┼ █▄█ ┼█┼ █┼█ █▄┼▀" << endl;
+    cout << "\x1b[34m█▄█▄█ █▄▄ █▄█ ███ █▄█ █┼┼┼█ █▄▄ ┼┼ ┼█┼ █▄█ ┼┼ ┼█┼ █┼█ █▄▄ ┼┼ █┼█ █▄▄ ███ ▄█▄ █┼┼ █▄▄ ┼┼ █▄▄█ █▄▄ █┼██ █▄▄ █┼█ █┼█ ┼█┼ █▄█ █┼█ ▀" << "\n" << endl;
 
     string filenameTwo = "GraphData5.csv";
     test.readForGraphCreation(filenameTwo);
 
-  int choice;
-  do {
-    printMenu();
-    cin >> choice;
+    int choice;
+    do {
+        printMenu();
+        cin >> choice;
 
-       // Input validation to clear the input buffer
+        // Input validation to clear the input buffer
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 
-    switch (choice) {
+        switch (choice) {
 
-        case 1: {
-            // Test Dijkstra algorithm search for recipes with exact ingredients
-            vector<string> userInput = test.askForUserInput();
-            test.SearchRecipesWithExactIngredientsDijkstra(userInput);
-            break;
-        }
-        case 2: {
-            // Test Dijkstra algorithm search for recipes with ingredients plus extra ingredients
-            vector<string> userInput = test.askForUserInput();
-            test.SearchRecipesWithInputIngredientsPlusExtraIngredientsDijkstra(userInput);
-            break;
-        }
-        case 3: {
-            // Test BFS search for recipes with exact ingredients
-            vector<string> userInput = test.askForUserInput();
-            test.SearchRecipesWithExactIngredientsBFS(userInput);
-            break;
-        }
-        case 4: {
-            // Test BFS search for recipes with ingredients plus extra ingredients
-            vector<string> userInput = test.askForUserInput();
-            test.SearchRecipesWithInputIngredientsPlusExtraIngredientsBFS(userInput);
-            break;
-        }
-        case 5: {
-            // Test DFS search for recipes with exact ingredients
-            vector<string> userInput = test.askForUserInput();
-            test.SearchRecipesWithExactIngredientsDFS(userInput);
-            break;
-        }
-        case 6: {
-            // Test DFS search for recipes with ingredients plus extra ingredients
-            vector<string> userInput = test.askForUserInput();
-            test.SearchRecipesWithInputIngredientsPlusExtraIngredientsDFS(userInput);
-            break;
-        }
-        case 7: {
-            vector<string> userInput = test.askForUserInput();
-            test.everyRecipeWithOnlyExactIngredients(userInput);
-            break;
-        }
-        case 8: {
-            vector<string> userInput = test.askForUserInput();
-            test.everyRecipeWithInputIngredientsPlusExtraIngredients(userInput);
-            break;
-        }
-        case 9: {
-            // Test the FindSimilarRecipes function
-            test.FindVerySimilarRecipes();
-            break;
-        }
-      case 0:
-        cout << "\x1b[31mExiting the app. Goodbye!\x1b[0m" << endl;
-        break;
+            case 1: {
+                // Test Dijkstra algorithm search for recipes with exact ingredients
+                vector<string> userInput = test.askForUserInput();
+                auto startA = high_resolution_clock::now();
+                test.SearchRecipesWithExactIngredientsDijkstra(userInput);
+                auto stopA = high_resolution_clock::now();
+                duration<double> d = stopA - startA;
+                cout << fixed << setprecision(3) << "Dijkstra's algorithm takes " << d.count() << " seconds to search for recipes with exact ingredients." << endl;
+                break;
+            }
+            case 2: {
+                // Test Dijkstra algorithm search for recipes with ingredients plus extra ingredients
+                vector<string> userInput = test.askForUserInput();
+                auto startB = high_resolution_clock::now();
+                test.SearchRecipesWithInputIngredientsPlusExtraIngredientsDijkstra(userInput);
+                auto stopB = high_resolution_clock::now();
+                duration<double> d = stopB - startB;
+                cout << fixed << setprecision(3) << "Dijkstra's algorithm takes " << d.count() << " seconds to search for recipes with extra ingredients." << endl;
+                break;
+            }
+            case 3: {
+                // Test BFS search for recipes with exact ingredients
+                vector<string> userInput = test.askForUserInput();
+                auto startC = high_resolution_clock::now();
+                test.SearchRecipesWithExactIngredientsBFS(userInput);
+                auto stopC = high_resolution_clock::now();
+                duration<double> d = stopC - startC;
+                cout << fixed << setprecision(3) << "BFS algorithm takes " << d.count() << " seconds to search for recipes with exact ingredients." << endl;
+                break;
+            }
+            case 4: {
+                // Test BFS search for recipes with ingredients plus extra ingredients
+                vector<string> userInput = test.askForUserInput();
+                auto startD = high_resolution_clock::now();
+                test.SearchRecipesWithInputIngredientsPlusExtraIngredientsBFS(userInput);
+                auto stopD = high_resolution_clock::now();
+                duration<double> d = stopD - startD;
+                cout << fixed << setprecision(3) << "BFS algorithm takes " << d.count() << " seconds to search for recipes with extra ingredients." << endl;
+                break;
+            }
+            case 5: {
+                // Test DFS search for recipes with exact ingredients
+                vector<string> userInput = test.askForUserInput();
+                auto startE = high_resolution_clock::now();
+                test.SearchRecipesWithExactIngredientsDFS(userInput);
+                auto stopE = high_resolution_clock::now();
+                duration<double> d = stopE - startE;
+                cout << fixed << setprecision(3) << "DFS algorithm takes " << d.count() << " seconds to search for recipes with exact ingredients." << endl;
+                break;
+            }
+            case 6: {
+                // Test DFS search for recipes with ingredients plus extra ingredients
+                vector<string> userInput = test.askForUserInput();
+                auto startF = high_resolution_clock::now();
+                test.SearchRecipesWithInputIngredientsPlusExtraIngredientsDFS(userInput);
+                auto stopF = high_resolution_clock::now();
+                duration<double> d = stopF - startF;
+                cout << fixed << setprecision(3) << "DFS algorithm takes " << d.count() << " seconds to search for recipes with extra ingredients." << endl;
+                break;
+            }
+            case 7: {
+                vector<string> userInput = test.askForUserInput();
+                auto startG = high_resolution_clock::now();
+                test.everyRecipeWithOnlyExactIngredients(userInput);
+                auto stopG = high_resolution_clock::now();
+                duration<double> d = stopG - startG;
+                cout << fixed << setprecision(3) << "It takes " << d.count() << " seconds to search for recipes with exact ingredients" << endl;
+                break;
+            }
+            case 8: {
+                vector<string> userInput = test.askForUserInput();
+                auto startH = high_resolution_clock::now();
+                test.everyRecipeWithInputIngredientsPlusExtraIngredients(userInput);
+                auto stopH = high_resolution_clock::now();
+                duration<double> d = stopH - startH;
+                cout << fixed << setprecision(3) << "It takes " << d.count() << " seconds to search for recipes with extra ingredients" << endl;
+                break;
+            }
+            case 9: {
+                // Test the FindSimilarRecipes function
+                test.FindVerySimilarRecipes();
+                break;
+            }
+            case 0:
+                cout << "\x1b[31mExiting the app. Goodbye!\x1b[0m" << endl;
+                break;
 
-      default:
-        cout << "\x1b[31mInvalid choice. Please enter a valid option.\x1b[0m" << endl;
-    }
+            default:
+                cout << "\x1b[31mInvalid choice. Please enter a valid option.\x1b[0m" << endl;
+        }
 
-  } while (choice != 0);
+    } while (choice != 0);
 
-  return 0;
+    return 0;
 }
 
 
@@ -914,7 +950,7 @@ void Graph::SearchRecipesWithInputIngredientsPlusExtraIngredientsBFS(vector<stri
     // Check if no matching recipes were found
     if (recipeTracker.size() == 0)
     {
-         cout << "\x1b[31mNo recipes found " << list[0] << "\x1b[0m" << endl;
+        cout << "\x1b[31mNo recipes found " << list[0] << "\x1b[0m" << endl;
     }
     else
     {
@@ -1205,4 +1241,91 @@ void Graph::FindVerySimilarRecipes() {
         // If no matching recipe found by that name
         cout << "\033[1;31mNo matching recipe found by that name!\033[0m" << endl;
     }
+
+    cout << "Please enter a recipe you like to see its information: " << endl;
+    string finalInput;
+    getline(cin, finalInput);
+    bool finalChecker = false;
+    for(auto x = mapper.begin(); x != mapper.end(); ++x)
+    {
+        string parsedName = x->second.name;
+
+        // Remove extra spaces in the recipe name
+        int pos = parsedName.find("  ");
+        while (pos != std::string::npos) {
+            parsedName.erase(pos, 1);
+            pos = parsedName.find("  ");
+        }
+        pos = parsedName.find("   ");
+        while (pos != std::string::npos) {
+            parsedName.erase(pos, 1);
+            parsedName.erase(pos, 1);
+            pos = parsedName.find("   ");
+        }
+
+        // Check if the parsed name matches the user input
+        if (parsedName == finalInput) {
+            finalChecker = true;
+            x->second.printRecipeInfo();
+        }
+    }
+    if(finalChecker == false)
+    {
+        cout << "No recipe found with that name!" << endl;
+    }
 }
+
+/*    auto startA = high_resolution_clock::now();
+    test.everyRecipeWithOnlyExactIngredients(userInput);
+    auto stopA = high_resolution_clock::now();
+    duration<double> d = stopA - startA;
+    cout << fixed << setprecision(3) << "It takes " << d.count() << " seconds to search for recipes with exact ingredients" << endl;
+
+    auto startB = high_resolution_clock::now();
+    test.everyRecipeWithInputIngredientsPlusExtraIngredients(userInput);
+    auto stopB = high_resolution_clock::now();
+    duration<double> d = stopB - startB;
+    cout << fixed << setprecision(3) << "It takes " << d.count() << " seconds to search for recipes with extra ingredients" << endl;
+
+    auto startC = high_resolution_clock::now();
+    test.SearchRecipesWithExactIngredientsDijkstra(userInput);
+    auto stopC = high_resolution_clock::now();
+    duration<double> d = stopC - startC;
+    cout << fixed << setprecision(3) << "Dijkstra's algorithm takes " << d.count() << " seconds to search for recipes with exact ingredients" << endl;
+
+    auto startD = high_resolution_clock::now();
+    test.SearchRecipesWithInputIngredientsPlusExtraIngredientsDijkstra(userInput);
+    auto stopD = high_resolution_clock::now();
+    duration<double> d = stopD - startD;
+    cout << fixed << setprecision(3) << "Dijkstra's algorithm takes " << d.count() << " seconds to search for recipes with extra ingredients" << endl;
+
+    auto startE = high_resolution_clock::now();
+    test.SearchRecipesWithExactIngredientsBFS(userInput);
+    auto stopE = high_resolution_clock::now();
+    duration<double> d = stopE - startE;
+    cout << fixed << setprecision(3) << "BFS algorithm takes " << d.count() << " seconds to search for recipes with exact ingredients" << endl;
+
+    auto startF = high_resolution_clock::now();
+    test.SearchRecipesWithInputIngredientsPlusExtraIngredientsBFS(userInput);
+    auto stopF = high_resolution_clock::now();
+    duration<double> d = stopF - startF;
+    cout << fixed << setprecision(3) << "BFS algorithm takes " << d.count() << " seconds to search for recipes with extra ingredients" << endl;
+
+    auto startG = high_resolution_clock::now();
+    test.SearchRecipesWithExactIngredientsDFS(userInput);
+    auto stopG = high_resolution_clock::now();
+    duration<double> d = stopG - startG;
+    cout << fixed << setprecision(3) << "DFS algorithm takes " << d.count() << " seconds to search for recipes with exact ingredients" << endl;
+
+    auto startH = high_resolution_clock::now();
+    test.SearchRecipesWithInputIngredientsPlusExtraIngredientsDFS(userInput);
+    auto stopH = high_resolution_clock::now();
+    duration<double> d = stopH - startH;
+    cout << fixed << setprecision(3) << "DFS algorithm takes " << d.count() << " seconds to search for recipes with extra ingredients" << endl;
+
+    auto startI = high_resolution_clock::now();
+    test.SearchRecipesWithExactIngredientsBellmanFord(userInput);
+    auto stopI = high_resolution_clock::now();
+    duration<double> d = stopI - startI;
+    cout << fixed << setprecision(3) << "Bellman Ford algorithm takes " << d.count() << " seconds to search for recipes with exact ingredients" << endl;
+*/
